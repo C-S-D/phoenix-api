@@ -15,7 +15,8 @@ ENV PHOENIX_VERSION 1.1.6
 # update and install some software requirements
 RUN rm -rf /var/lib/apt/lists/*
 RUN apt-get update && apt-get upgrade -y
-RUN apt-get install -y curl wget git make mysql-client postgresql-client --no-install-recommends && rm -rf /var/lib/apt/lists/*
+RUN apt-get install -y ca-certificates curl wget git make mysql-client postgresql-client --no-install-recommends
+RUN rm -rf /var/lib/apt/lists/*
 
 # Install Elixir using recommended steps from http://elixir-lang.org/install.html#unix-and-unix-like
 RUN wget http://packages.erlang-solutions.com/erlang-solutions_1.0_all.deb \
