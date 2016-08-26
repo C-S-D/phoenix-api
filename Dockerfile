@@ -1,21 +1,24 @@
-FROM ubuntu:latest
+FROM phusion/baseimage:latest
 
 MAINTAINER Adam Radabaugh <adam@walkingtoast.com>
+
+# Use baseimage-docker's init system.
+CMD ["/sbin/my_init"]
 
 # Elixir requires UTF-8
 RUN locale-gen en_US.UTF-8
 
-ENV ELIXIR_VERSION 1.3.0
-ENV ERLANG_VERSION 18.3
+ENV ELIXIR_VERSION 1.3.2
+ENV ERLANG_VERSION 19.0.2
 ENV LANG en_US.UTF-8
 ENV LANGUAGE en_US:en
 ENV LC_ALL en_US.UTF-8
-ENV PHOENIX_VERSION 1.1.6
+ENV PHOENIX_VERSION 1.2.0
 
 # update and install some software requirements
 RUN rm -rf /var/lib/apt/lists/*
 RUN apt-get update && apt-get upgrade -y
-RUN apt-get install -y ca-certificates curl wget git make mysql-client postgresql-client --no-install-recommends
+RUN apt-get install -y ca-certificates curl wget git make postgresql-client openssh-client --no-install-recommends
 RUN rm -rf /var/lib/apt/lists/*
 
 # Install Elixir using recommended steps from http://elixir-lang.org/install.html#unix-and-unix-like
@@ -28,5 +31,8 @@ RUN wget http://packages.erlang-solutions.com/erlang-solutions_1.0_all.deb \
 RUN mix local.hex --force
 RUN mix local.rebar --force
 RUN mix archive.install --force https://github.com/phoenixframework/archives/raw/master/phoenix_new-$PHOENIX_VERSION.ez
+RUN mix hex.info
+
+RUN apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
 WORKDIR /code
