@@ -8,16 +8,15 @@ CMD ["/sbin/my_init"]
 # Elixir requires UTF-8
 RUN locale-gen en_US.UTF-8
 
-ENV ELIXIR_VERSION 1.3.2
-ENV ERLANG_VERSION 19.0.2
+ENV ELIXIR_VERSION 1.3.3
+ENV ERLANG_VERSION 19.1
 ENV LANG en_US.UTF-8
 ENV LANGUAGE en_US:en
 ENV LC_ALL en_US.UTF-8
 ENV PHOENIX_VERSION 1.2.0
 
 # update and install some software requirements
-RUN rm -rf /var/lib/apt/lists/*
-RUN apt-get update && apt-get upgrade -y
+RUN apt-get update && apt-get upgrade -y --fix-missing
 RUN apt-get install -y ca-certificates curl wget git make postgresql-client openssh-client --no-install-recommends
 RUN rm -rf /var/lib/apt/lists/*
 

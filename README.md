@@ -10,6 +10,9 @@ Borrowed from https://github.com/marcelocg/phoenix-docker
 
 Phoenix is a framework for building scalable web applications with realtime connectivity across all your devices. It relies on the Elixir language for making the development of maintainable applications productive and fun.
 
+### Building local image
+    docker build -t csd1/phoenix-api:latest .
+
 ### How to use this image
 
-    docker run -it --rm -v "$PWD":/code -w /phoenix thewalkingtoast/phoenix-api mix phoenix.new --no-brunch /code/my_new_app
+    docker run -it --rm -v "$PWD":/code -w /phoenix csd1/phoenix-api mix phoenix.new --no-brunch /code/my_new_app
