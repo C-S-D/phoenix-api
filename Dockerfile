@@ -8,12 +8,12 @@ CMD ["/sbin/my_init"]
 # Elixir requires UTF-8
 RUN locale-gen en_US.UTF-8
 
-ENV ELIXIR_VERSION 1.3.3
+ENV ELIXIR_VERSION 1.3.4
 ENV ERLANG_VERSION 19.1
 ENV LANG en_US.UTF-8
 ENV LANGUAGE en_US:en
 ENV LC_ALL en_US.UTF-8
-ENV PHOENIX_VERSION 1.2.0
+ENV PHOENIX_VERSION 1.2.1
 
 # update and install some software requirements
 RUN apt-get update && apt-get upgrade -y --fix-missing
