@@ -6,6 +6,8 @@ MAINTAINER Adam Radabaugh <aradabaugh@csd.org>
 RUN apt-get purge -y mysql-client
 RUN apt-get install -y openssh-client -y --no-install-recommends
 RUN apt-get autoremove -y
+# Needed to compile binaries for comeonin
+RUN apt-get install -y make
 RUN rm -rf /var/lib/apt/lists/*
 
 RUN apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
